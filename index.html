@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-912D4ZR2HV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-912D4ZR2HV');
+</script>
+
+<!-- Robust Anti-Reload (Blocking Live Server) -->
+<script>
+(function() {
+    const block = (m) => console.log("Blocking reload attempt: " + m);
+    try {
+        // Simple override
+        window.location.reload = function() { block("location.reload"); };
+        window.history.go = function() { block("history.go"); };
+        window.location.replace = function() { block("location.replace"); };
+        
+        // Prevent meta refresh
+        const preventRefresh = () => {
+            const refresh = document.querySelector('meta[http-equiv="refresh"]');
+            if (refresh) {
+                console.log("Blocking meta refresh");
+                refresh.remove();
+            }
+        };
+        setInterval(preventRefresh, 1000);
+
+        // Block beforeunload popup if it exists
+        window.addEventListener('beforeunload', (event) => {
+            event.stopImmediatePropagation();
+        }, true);
+
+    } catch(e) { console.error("Reload fix error:", e); }
+})();
+</script>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sky Car Stunt - Play Online for Free</title>
+    <meta name="description" content="Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!"> 
+    <meta name="author" content="HSINI">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      #gameContainer canvas {
+        display: block;
+      }
+      canvas {
+        display: block;
+        background-image: url("Template/logo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+
+        background-size: 960px 600px;
+
+        filter: blur(8px);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      div#loadingBox {
+        width: 100%;
+        height: 0px;
+        position: absolute;
+        top: 50%;
+        margin-top: 137px;
+        text-align: center;
+      }
+
+      div#icon {
+        width: 300px;
+        height: 310px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -185px;
+        margin-left: -150px;
+        background-image: url("Template/logo.png");
+        background-repeat: no-repeat;
+        box-shadow: 1px 1px 5px #141414;
+      }
+
+      div#box {
+        width: 328px;
+        height: 367px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -199px;
+        margin-left: -164px;
+        background: #222;
+        box-shadow: 1px 1px 5px #000;
+      }
+
+      div#bgBar {
+        display: none;
+        position: absolute;
+        width: 300px;
+        margin-left: -150px;
+        left: 50%;
+        height: 18px;
+        background-color: #00c5d9;
+        box-shadow: 1px 1px 5px #111;
+      }
+
+      div#progressBar {
+        display: none;
+        left: 50%;
+        position: absolute;
+        margin-left: -150px;
+        width: 0px;
+        height: 18px;
+        background-color: #00c5d9;
+      }
+
+      p#loadingInfo {
+        color: #fff;
+        letter-spacing: 1px;
+        position: absolute;
+        width: 100%;
+        font-family: sans-serif;
+        text-align: center;
+        top: 50%;
+        font-size: 11px;
+        font-weight: 500;
+        margin-top: 140px;
+        text-shadow: 0px 0px 5px #000;
+      }
+
+      div#spinner {
+        position: absolute;
+        height: 18px;
+        left: 50%;
+        margin-left: -150px;
+        width: 300px;
+        position: relative;
+        overflow: hidden;
+        background-color: #00c5d9;
+        box-shadow: 1px 1px 5px #111;
+      }
+
+      div#spinner:before {
+        display: block;
+        position: absolute;
+        content: "";
+        width: 150%;
+        margin-left: -10px;
+        height: 10px;
+
+        transform: rotate(-5deg);
+        animation: loading 1s linear infinite;
+      }
+
+      @keyframes loading {
+        from {
+          top: -185%;
+        }
+        to {
+          top: 225%;
+        }
+      }
+    </style>
+    <script>
+      var isMobile = {
+        Android: function () {
+          return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function () {
+          return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function () {
+          return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function () {
+          return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function () {
+          return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function () {
+          return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+        },
+      };
+
+      function check_mbl() {
+        if (isMobile.any()) {
+          ///var icon_id = document.getElementById('loadingBox');
+
+          document.getElementById("icon").style.display = "none";
+          document.getElementById("box").style.display = "none";
+          document.getElementById("loadingBox").style.display = "none";
+        }
+      }
+    </script>
+
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      function UnityProgress(gameInstance, progress) {
+        var container = document.getElementById("gameContainer");
+        if (container) document.body.style.background = "#003338";
+
+        if (!gameInstance.Module) {
+          return;
+        } else if (progress === "complete") {
+          document.getElementsByTagName("canvas")[0].style.filter = "none";
+          document.getElementById("loadingBox").style.display = "none";
+          document.getElementById("icon").style.display = "none";
+          document.getElementById("loadingInfo").style.display = "none";
+          document.getElementById("box").style.display = "none";
+        } else if (progress === 1 || progress === "preinit") {
+          document.getElementById("loadingInfo").innerHTML = "PROCESSING...";
+          document.getElementById("spinner").style.display = "inherit";
+          document.getElementById("bgBar").style.display = "none";
+          document.getElementById("progressBar").style.display = "none";
+        } else if (progress > 0) {
+          document.getElementById("progressBar").style.width = 300 * progress + "px";
+          document.getElementById("loadingInfo").innerHTML = Math.round(progress * 100) + "%";
+          document.getElementById("spinner").style.display = "none";
+          document.getElementById("bgBar").style.display = "block";
+          document.getElementById("progressBar").style.display = "inherit";
+
+          if (isMobile.any()) {
+            document.getElementById("icon").style.display = "block";
+            document.getElementById("box").style.display = "block";
+            document.getElementById("loadingBox").style.display = "block";
+          }
+        }
+      }
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/GM.json", {
+        onProgress: UnityProgress,
+        Module: {
+          onRuntimeInitialized: function () {
+            UnityProgress(gameInstance, "complete");
+          },
+          preInit: [
+            function () {
+              UnityProgress(gameInstance, "preinit");
+            },
+          ],
+        },
+      });
+    </script>
+  
+    <meta property="og:title" content="Sky Car Stunt - Play Online for Free">
+    <meta property="og:description" content="Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unlockedgames.io/sky-car-stunt/">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": [
+    "VideoGame",
+    "SoftwareApplication"
+  ],
+  "name": "Sky Car Stunt",
+  "description": "Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!",
+  "url": "https://unlockedgames.io/sky-car-stunt/",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "genre": "Arcade",
+  "inLanguage": "en",
+  "isAccessibleForFree": true
+}</script>
+
+    <meta property="og:title" content="Sky Car Stunt - Play Online for Free">
+    <meta property="og:description" content="Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unlockedgames.io/sky-car-stunt/">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": [
+    "VideoGame",
+    "SoftwareApplication"
+  ],
+  "name": "Sky Car Stunt",
+  "description": "Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!",
+  "url": "https://unlockedgames.io/sky-car-stunt/",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "genre": "Arcade",
+  "inLanguage": "en",
+  "isAccessibleForFree": true
+}</script>
+
+    <meta property="og:title" content="Sky Car Stunt - Play Online for Free">
+    <meta property="og:description" content="Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unlockedgames.io/sky-car-stunt/">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": [
+    "VideoGame",
+    "SoftwareApplication"
+  ],
+  "name": "Sky Car Stunt",
+  "description": "Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!",
+  "url": "https://unlockedgames.io/sky-car-stunt/",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "genre": "Arcade",
+  "inLanguage": "en",
+  "isAccessibleForFree": true
+}</script>
+
+    <meta property="og:title" content="Sky Car Stunt - Play Online for Free">
+    <meta property="og:description" content="Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unlockedgames.io/sky-car-stunt/">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": [
+    "VideoGame",
+    "SoftwareApplication"
+  ],
+  "name": "Sky Car Stunt",
+  "description": "Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!",
+  "url": "https://unlockedgames.io/sky-car-stunt/",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "genre": "Arcade",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Person",
+    "name": "HSINI"
+  }
+}</script>
+
+    <meta property="og:title" content="Sky Car Stunt - Play Online for Free">
+    <meta property="og:description" content="Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unlockedgames.io/sky-car-stunt/">
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": [
+    "VideoGame",
+    "SoftwareApplication"
+  ],
+  "name": "Sky Car Stunt",
+  "description": "Play Sky Car Stunt online for free. Unblocked and available on all devices. Experience the best Sky Car Stunt gameplay now!",
+  "url": "https://unlockedgames.io/sky-car-stunt/",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "genre": "Arcade",
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Person",
+    "name": "HSINI"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "hsinidev"
+  }
+}</script>
+</head>
+  <body>
+    <div id="webgl-content">
+      <div id="gameContainer" style="width: 960px; height: 600px;"></div>
+    </div>
+    <div id="box"></div>
+    <div id="loadingBox">
+      <div id="spinner"></div>
+      <div id="bgBar"></div>
+      <div id="progressBar"></div>
+    </div>
+    <div id="icon"></div>
+    <p id="loadingInfo"></p>
+    <script>
+      check_mbl();
+    </script>
+    <script src="/js/main.js"></script>
+  
+<!-- SEO CONTENT (Hidden) -->
+<div class="seo-generated-content" style="display:none; visibility:hidden;">
+<h2>Sky Car Stunt: A Comprehensive Guide</h2>
+
+<h3>Game Overview</h3>
+<p>Sky Car Stunt is a thrilling browser game where you control a stunt car racing through various challenging levels, overcoming obstacles and performing aerial stunts to earn points and progress. The game requires precision driving skills, quick reflexes, and strategic decision-making.</p>
+
+<h2>How to Play</h2>
+<p>In Sky Car Stunt, your goal is to navigate the stunt car through a series of increasingly difficult courses while avoiding collisions with obstacles and other cars. Each level is divided into several sections, each with its own unique challenges and objectives.</p>
+<table>
+  <tr>
+    <th>Section</th>
+    <th>Controls</th>
+    <th>Objective</th>
+  </tr>
+  <tr>
+    <td>Level Starters</td>
+    <td><a href="#">Tap the green button to start the level.</a></td>
+    <td><span class="highlight">Collect all the coins on the track to earn bonus points.</span></td>
+  </tr>
+  <tr>
+    <td>Obstacle Avoidance</td>
+    <td><a href="#">Use the car's speed and agility to avoid obstacles like rocks, rails, and other cars.</a></td>
+    <td><span class="highlight">Perform a stunt by tapping the button when you've passed an obstacle.</span></td>
+  </tr>
+  <tr>
+    <td>Jumping and Boosters</td>
+    <td><a href="#">Tap the jump button to boost your speed and clear obstacles.</a></td>
+    <td><span class="highlight">Perform a stunt by tapping the button when you've cleared an obstacle.</span></td>
+  </tr>
+</table>
+
+<h2>Tips and Tricks for Success</h2>
+<p>To succeed in Sky Car Stunt, focus on mastering your driving skills, including accelerating, braking, and turning. Practice makes perfect, so try different stunts and techniques to find what works best for you.</p>
+ 
+<p>Pay attention to the mini-map, which displays upcoming obstacles and hazards. Use it to plan your route and avoid danger.</p>
+<p><span class="highlight">Use the power-up asteroids wisely, as they can give you a temporary speed boost or protect you from collisions.</span></p>
+<p><span class="highlight">Try to collect all the coins on the track to earn bonus points.</span></p>
+
+<h2>Why You Should Play It</h2>
+<p>Sky Car Stunt is an entertaining and challenging game that offers a fun and engaging experience for players of all ages. Its simple yet addictive gameplay makes it perfect for playing in short bursts, and its relaxing atmosphere can help reduce stress and improve focus.</p>
+ 
+<p>Whether you're looking for a casual gaming session or a more intense challenge, Sky Car Stunt has something to offer. With its regular updates with new levels, obstacles, and features, there's always something new to look forward to.</p>
+
+<h2>Closing</h2>
+<p><a href="#">Try playing Sky Car Stunt now!</a></p>
+</div>
+<script>
+    // Silently block specific Live Server reload triggers if possible
+    
+</script>
+</body>
+</html>
